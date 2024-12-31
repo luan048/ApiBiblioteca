@@ -38,6 +38,37 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public String upBook(String isbn, Book book) {
+        var id = UUID.fromString(isbn);
+        var bookEntity = bookRepository.findById(id);
+
+        if(bookEntity.isPresent()) {
+            var existingBook = bookEntity.get();
+
+            if (book.getNameBook() != null) {
+                existingBook.setNameBook(book.getNameBook());
+            }
+            if (book.getSection() != null) {
+                existingBook.setSection(book.getSection());
+            }
+            if (book.getAuthor() != null) {
+                existingBook.setAuthor(book.getAuthor());
+            }
+            if (book.getAuthor() != null) {
+                existingBook.setAuthor(book.getAuthor());
+            }
+            if (book.getPublisher() != null) {
+                existingBook.setPublisher(book.getPublisher());
+            }
+
+            bookRepository.save(existingBook);
+
+            return "Book atualizado com sucesso!";
+        }
+
+        return "Book não encontrado!";
+    }
+
     public String deleteBook(String isbn) {
         var id = UUID.fromString(isbn);
         var bookExists = bookRepository.existsById(id);

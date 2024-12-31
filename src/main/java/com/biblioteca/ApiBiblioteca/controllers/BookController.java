@@ -39,6 +39,12 @@ public class BookController {
         return ResponseEntity.ok(books);
     }
 
+    @PutMapping("/{isbn}")
+    public ResponseEntity<Void> upBook(@PathVariable("isbn") String isbn, @RequestBody Book book) {
+        bookService.upBook(isbn, book);
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/{isbn}")
     public ResponseEntity<Void> deleteById(@PathVariable("isbn") String id) {
         bookService.deleteBook(id);
