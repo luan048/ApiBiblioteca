@@ -38,12 +38,15 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public void deleteBook(String isbn) {
+    public String deleteBook(String isbn) {
         var id = UUID.fromString(isbn);
         var bookExists = bookRepository.existsById(id);
 
         if(bookExists) {
             bookRepository.deleteById(id);
+            return "Livro deletado com sucesso!";
         }
+
+        return "Livro não encontrado";
     }
 }
