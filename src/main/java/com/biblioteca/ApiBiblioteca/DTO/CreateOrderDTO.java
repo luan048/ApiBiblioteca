@@ -3,7 +3,7 @@ package com.biblioteca.ApiBiblioteca.DTO;
 import com.biblioteca.ApiBiblioteca.entity.Book;
 import com.biblioteca.ApiBiblioteca.entity.Client;
 
-import java.time.Instant;
+import java.util.UUID;
 
-public record CreateOrderDTO(Book book, Client client, Instant creationTimestamp, String return_date) {
+public record CreateOrderDTO(UUID bookId, UUID clientId, String return_date) {
 }
